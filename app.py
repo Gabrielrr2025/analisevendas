@@ -26,10 +26,10 @@ def extrair_produtos(texto):
     """
     # Padrão para capturar os dados principais
     padrao = r"^(\d+)\s+(\d+)\s+([A-Z0-9\s\[\]/\-\.]{10,}?)\s+([\d,\.]+)\s+([\d,\.]+)\s+([\d\.]+,\d{2})"
-    
+
     produtos = []
     linhas = texto.split('\n')
-    
+
     for linha in linhas:
         # Busca apenas linhas que começam com número (classificação)
         match = re.match(padrao, linha.strip())
@@ -40,10 +40,10 @@ def extrair_produtos(texto):
             custo = match.group(4)
             quantidade = float(match.group(5).replace(",", "."))
             valor_total = float(match.group(6).replace(",", "."))
-            
+
             # Apenas o nome do produto (sem código)
             produtos.append((nome, quantidade, valor_total))
-    
+
     return produtos
 
 def gerar_excel(produtos, setor, mes, semana):
